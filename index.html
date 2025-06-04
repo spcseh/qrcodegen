@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>QR Code Generator</title>
+
+    <!-- Fonts & Tailwind -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- QR Code Generator Library -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+      defer
+    ></script>
+
+    <!-- Custom JS -->
+    <script src="js/script.js" defer></script>
+  </head>
+
+  <body class="font-sans bg-white">
+    <header class="p-6 text-center bg-[#e0c3fc] text-[#333]">
+      <h1 class="text-4xl font-bold">QR Code Generator</h1>
+      <p class="text-lg mt-2">Create & download stylish QR codes</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto mt-10 p-6 rounded-2xl text-center">
+      <div class="flex flex-col items-center justify-center">
+        <!-- Form -->
+        <section class="w-full md:w-2/3">
+          <h2 class="text-2xl font-semibold mb-4">Enter URL to Generate QR</h2>
+          <form id="generate-form" class="flex flex-col items-center space-y-4">
+            <input
+              type="url"
+              id="url"
+              class="w-full md:w-96 px-4 py-2 border rounded"
+              placeholder="https://example.com"
+              required
+            />
+            <select id="size" class="px-4 py-2 border rounded">
+              <option value="150">150x150</option>
+              <option value="300">300x300</option>
+              <option value="500">500x500</option>
+              <option value="600">600x600</option>
+              <option value="700">700x700</option>
+              <option value="800">800x800</option>
+            </select>
+            <button type="submit" class="mt-2 px-6 py-2 bg-[#e0c3fc] text-[#333] rounded shadow">
+              Generate QR Code
+            </button>
+          </form>
+        </section>
+      </div>
+
+      <!-- Result -->
+      <div id="generated" class="text-center mt-10">
+        <!-- Spinner -->
+        <div id="spinner" class="hidden">
+          <svg
+            class="inline w-16 h-16 text-gray-300 animate-spin fill-[#e0c3fc]"
+            viewBox="0 0 100 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="10" />
+            <path
+              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116..."
+              fill="currentFill"
+            />
+          </svg>
+        </div>
+
+        <!-- QR Output -->
+        <div id="qrcode" class="mt-6"></div>
+      </div>
+    </main>
+  </body>
+</html>
